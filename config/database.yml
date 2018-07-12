@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch('RAILS_MAX_THREADS') { 5 } %>
+
+  username: <%= ENV.fetch('PG_USERNAME', 'postgres') %>
+  password: <%= ENV.fetch('PG_USERNAME', '') %>
+  host: <%= ENV.fetch('PG_HOST', 'localhost') %>
+  port: <%= ENV.fetch('PG_PORT', 5432) %>
+
+development:
+  <<: *default
+  database: angular-demo-backend_development
+
+test:
+  <<: *default
+  database: angular-demo-backend_test
+
+production:
+  <<: *default
+  database: angular-demo-backend_production

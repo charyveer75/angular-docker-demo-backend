@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  gems:
+    image: jfahrer/angular-demo-backend-gems:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.gems

@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  app:
+    image: jfahrer/angular-demo-backend:latest
+    build:
+      context: .
+    volumes:
+      - ./:/app:cached
+    env_file:
+      - config/env/application.env
+    command: ["spring", "server"]
+
+  web:
+    image: jfahrer/angular-demo-backend:latest
+    ports:
+      - 3000:3000
+    volumes:
+      - ./:/app:cached
+    env_file:
+      - config/env/application.env
+
+  pg:
+    image: postgres:9.6-alpine
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+    environment:
+      - PG_USERNAME=postgres
+      - PG_PASSWORD=postgres
+
+volumes:
+  pg-data:
