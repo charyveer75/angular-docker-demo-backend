@@ -7,7 +7,7 @@ ENV LANG C.UTF-8
 ENV PATH ./bin:$PATH
 ENV RAILS_LOG_TO_STDOUT true
 
-RUN apt-get update -qq && apt-get install -y       build-essential       nodejs       postgresql-client
+RUN apt-get update -qq && apt-get install -y build-essential nodejs postgresql-client
 
 WORKDIR /tmp
 COPY Gemfile* /tmp/
@@ -18,4 +18,5 @@ COPY . /app
 
 EXPOSE 3000
 
+ENTRYPOINT ["/app/scripts/docker-entrypoint.sh"]
 CMD ["rails", "server", "-b", "0.0.0.0"]
